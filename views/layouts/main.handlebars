@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fund My Project!</title>
+  <title>Tech Blog</title>
   <link rel="stylesheet" href="/css/jass.css">
   <link rel="stylesheet" href="/css/style.css">
 </head>
@@ -12,18 +12,24 @@
 <body>
   <div class="flex-column justify-space-around">
     <header class="display-flex justify-space-between align-center p-2">
-      <h1>
-        <span role="img" aria-label="money">💸</span>
-        <a href="/">Fund My Project!</a>
-      </h1>
       <nav>
-        <!-- Conditionally render login or logout links -->
-        {{#if logged_in}}
-        <a href="/profile">profile</a> |
-        <button class="no-button" id="logout">logout</button>
-        {{else}}
-        <a href="/login">login</a>
-        {{/if}}
+        <ul style="list-style-type: none; font-size: 30px;" class="flex-row">
+          <li>
+            <a href="/" class="mr-5">Home</a>
+          </li>
+          <li>
+            <a href="/dashboard" class="mr-5">Dashboard</a>
+          </li>
+          {{#if logged_in}}
+          <li>
+            <a id="logout" class="mr-5">Logout</a>
+          </li>           
+          {{else}}
+          <li>
+            <a href="/login" class="mr-5">Login</a>
+          </li>          
+          {{/if}}
+        </ul>
       </nav>
     </header>
     <main class="container container-fluid mt-5">
