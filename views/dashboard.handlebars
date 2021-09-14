@@ -28,7 +28,7 @@
       <h3>Your Posts:</h3>
       {{#each posts as |post|}}
       <div class="row mb-2">
-        <div class="col-md-6">
+        <div class="col-md-8">
           <h4><a href="/post/{{post.id}}">{{post.name}}</a></h4>
         </div>
         <div class="col-md-2">
@@ -44,8 +44,8 @@
       <h3>Your Comments:</h3>
       {{#each comments as |comment|}}
       <div class="row mb-2">
-        <div class="col-md-6">
-          <h4><a href="/post/{{comment.post_id}}">{{comment.content}}</a></h4>
+        <div class="col-md-8">
+          <h4><a href="/post/{{comment.post_id}}">{{shorten_string comment.content}}</a></h4>
         </div>
         <div class="col-md-2">
           <button class="btn btn-sm btn-danger commentEdit" data-id="{{comment.id}}">EDIT</button>
