@@ -63,6 +63,42 @@ router.get('/post/:id', async (req, res) => {
   }
 });
 
+router.get('/edit/post/:id', async (req, res) => {
+  try {
+    const postData = await Post.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+      ],
+    });
+
+    const post = postData.get({ plain: true });
+
+    const commentData = await Comment.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['username'],
+        },
+        
+      ],
+      where: { post_id: req.params.id }
+    })
+
+    const comments = commentData.map((comment) => comment.get({ plain: true }));
+
+    res.render('post', {
+      post: post,
+      comments: comments,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // Use withAuth middleware to prevent access to route
 router.get('/dashboard', withAuth, async (req, res) => {
   try {
@@ -76,7 +112,8 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
     res.render('dashboard', {
       ...user,
-      logged_in: true
+      logged_in: true,
+      dashboard: true
     });
   } catch (err) {
     res.status(500).json(err);

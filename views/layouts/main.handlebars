@@ -12,6 +12,11 @@
 <body>
   <div class="flex-column justify-space-around">
     <header class="display-flex justify-space-between align-center p-2">
+      {{#if dashboard}}
+      <h1>Your Dashboard</h1>
+      {{else}}
+      <h1>The Tech Blog</h1>
+      {{/if}}
       <nav>
         <ul style="list-style-type: none; font-size: 30px;" class="flex-row">
           <li>

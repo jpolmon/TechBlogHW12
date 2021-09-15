@@ -1,9 +1,15 @@
-<section>
-  <h2>Post Title</h2>
-  <input class="form-input" type="text" id="post-title" name="post-title" value={{post.name}}/>
-  <h4>Post Content</h4>
-  <input class="form-input" type="text" id="post-title" name="post-title" value={{post.name}}/>
-  <button class="btn btn-primary" id="save">Save Changes</button>
-</section>
+<form class="form edit-post-form">
+    <div class="form-group">
+    <label for="post-name">Post title:</label>
+    <input class="form-input" type="text" id="post-name" name="post-name" />
+    </div>
+    <div class="form-group">
+    <label for="post-content">Post content:</label>
+    <textarea class="form-input" id="post-content" name="post-content"></textarea>
+    </div>
+    <div class="form-group">
+    <button type="submit" class="btn btn-primary" id="create">Create</button>
+    </div>
+</form>
 
 <script src="./js/edit.js"></script>

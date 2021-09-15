@@ -5,6 +5,10 @@ module.exports = {
   },
 
   shorten_string: (str) => {
-    return str.substr(0, 25);
+    if (str.length > 25) {
+      return str.substr(0, 25);
+    } else {
+      return str;
+    }    
   }
 };

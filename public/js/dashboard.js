@@ -76,34 +76,23 @@ const editButtonHandler = async (event) => {
     }
 }
 
-
+document
+  .querySelector('.new-post-form')
+  .addEventListener('submit', newFormHandler);
 
 if (document.querySelector('.postDelete')) {
   document
     .querySelector('.postDelete')
     .addEventListener('click', postDelButtonHandler);
 } 
-// else {
-//   document
-//     .querySelector('.postDelete')
-//     .removeEventListener('click', postDelButtonHandler);
-// }
 
 if (document.querySelector('.commentDelete')) {
   document
     .querySelector('.commentDelete')
     .addEventListener('click', commentDelButtonHandler);
 } 
-// else {
-//   document
-//     .querySelector('.commentDelete')
-//     .removeEventListener('click', postDelButtonHandler);
-// }
 
 
-document
-  .querySelector('.new-post-form')
-  .addEventListener('submit', newFormHandler);
 
 // document
 //   .querySelector('#postEdit')

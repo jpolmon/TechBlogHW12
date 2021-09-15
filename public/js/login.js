@@ -15,12 +15,38 @@ const loginFormHandler = async (event) => {
 
     if (response.ok) {
       // If successful, redirect the browser to the profile page
+      // inactivityTime();
       document.location.replace('/dashboard');
     } else {
       alert(response.statusText);
     }
   }
 };
+
+// let inactivityTime = function () {
+//   let time;
+//   window.onload = resetTimer;
+//   document.onmousemove = resetTimer;
+//   document.onkeydown = resetTimer;
+
+//   function logOut() {
+//     const response = await fetch('/api/users/logout', {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//     });
+  
+//     if (response.ok) {
+//       document.location.replace('/');
+//     } else {
+//       alert(response.statusText);
+//     }
+//   }
+
+//   function resetTimer() {
+//     clearTimeout(time);
+//     time = setTimeout(logOut, 10000);
+//   }
+// }
 
 const signupFormHandler = async (event) => {
   event.preventDefault();
