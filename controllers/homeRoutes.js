@@ -18,9 +18,9 @@ router.get('/', async (req, res) => {
     const posts = postData.map((post) => post.get({ plain: true }));
 
     // Pass serialized data and session flag into template
-    res.render('homepage', { 
-      posts, 
-      logged_in: req.session.logged_in 
+    res.render('homepage', {
+      posts,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -46,17 +46,16 @@ router.get('/post/:id', async (req, res) => {
           model: User,
           attributes: ['username'],
         },
-        
       ],
-      where: { post_id: req.params.id }
-    })
+      where: { post_id: req.params.id },
+    });
 
     const comments = commentData.map((comment) => comment.get({ plain: true }));
 
     res.render('post', {
       post: post,
       comments: comments,
-      logged_in: req.session.logged_in
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -76,23 +75,9 @@ router.get('/edit/post/:id', async (req, res) => {
 
     const post = postData.get({ plain: true });
 
-    const commentData = await Comment.findAll({
-      include: [
-        {
-          model: User,
-          attributes: ['username'],
-        },
-        
-      ],
-      where: { post_id: req.params.id }
-    })
-
-    const comments = commentData.map((comment) => comment.get({ plain: true }));
-
-    res.render('post', {
+    res.render('edit', {
       post: post,
-      comments: comments,
-      logged_in: req.session.logged_in
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -113,7 +98,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
     res.render('dashboard', {
       ...user,
       logged_in: true,
-      dashboard: true
+      dashboard: true,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -121,7 +106,6 @@ router.get('/dashboard', withAuth, async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-
   res.render('login');
 });
 

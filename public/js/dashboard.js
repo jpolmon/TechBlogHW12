@@ -1,3 +1,8 @@
+let postDeleteBtns = document.querySelectorAll('.postDelete');
+let postEditBtns = document.querySelectorAll('.postEdit');
+let commentDeleteBtns = document.querySelectorAll('.commentDelete');
+let commentEditBtns = document.querySelectorAll('.commentEdit');
+
 const newFormHandler = async (event) => {
   event.preventDefault();
 
@@ -33,10 +38,6 @@ const postDelButtonHandler = async (event) => {
   } else {
     alert('Failed to delete project');
   }
-
-  if (!document.querySelector('.postDelete')) {
-    document.removeEventListener('click', postDelButtonHandler);
-  }
 };
 
 const commentDelButtonHandler = async (event) => {
@@ -51,48 +52,46 @@ const commentDelButtonHandler = async (event) => {
   } else {
     alert('Failed to delete comment');
   }
-
-  if (!document.querySelector('.commentDelete')) {
-    document.removeEventListener('click', commentDelButtonHandler);
-  }
 };
 
-const editButtonHandler = async (event) => {
-    const id = event.target.getAttribute('data-id');
+const postEditButtonHandler = async (event) => {
+  event.preventDefault();
+  const id = event.target.getAttribute('data-id');
 
-    res.render('edit', {
-      ...user,
-      logged_in: true
-    });
+  const response = await fetch(`/edit/post/${id}`, {
+    method: 'GET',
+  });
 
-    const response = await fetch(`/api/posts/${id}`, {
-      method: 'DELETE',
-    });
-
-    if (response.ok) {
-      document.location.replace('/dashboard');
-    } else {
-      alert('Failed to delete project');
-    }
-}
+  if (response.ok) {
+    document.location.replace(`/edit/post/${id}`);
+  }
+};
 
 document
   .querySelector('.new-post-form')
   .addEventListener('submit', newFormHandler);
 
-if (document.querySelector('.postDelete')) {
-  document
-    .querySelector('.postDelete')
-    .addEventListener('click', postDelButtonHandler);
-} 
+if (postDeleteBtns) {
+  for (let i = 0; i < postDeleteBtns.length; i++) {
+    postDeleteBtns[i].addEventListener('click', postDelButtonHandler);
+  }
+}
 
-if (document.querySelector('.commentDelete')) {
-  document
-    .querySelector('.commentDelete')
-    .addEventListener('click', commentDelButtonHandler);
-} 
+if (postEditBtns) {
+  for (let i = 0; i < postEditBtns.length; i++) {
+    postEditBtns[i].addEventListener('click', postEditButtonHandler);
+  }
+}
 
+if (commentDeleteBtns) {
+  for (let i = 0; i < commentDeleteBtns.length; i++) {
+    commentDeleteBtns[i].addEventListener('click', commentDelButtonHandler);
+  }
+}
 
+// if (commentEditBtns) {
+//   commentEditBtn.addEventListener('click', commentEditButtonHandler);
+// }
 
 // document
 //   .querySelector('#postEdit')
@@ -101,4 +100,3 @@ if (document.querySelector('.commentDelete')) {
 // document
 //   .querySelector('#commentEdit')
 //   .addEventListener('click', editButtonHandler);
-
