@@ -9,12 +9,13 @@ Some features of the site are:
 - The user is able to create an account and log into the site.
   - User passwords are secured using bcrypt.
   - When the user creates an account they are taken to their dashboard where they can view/delete their comments/posts.
+  - The User is able to edit existing posts.
   - The user is logged out automatically after ten minutes of inactivity.
   - When viewing a post while logged in the user can choose to add a comment.
 - The user is able to view all posts on the site whether they are logged in or not.
 - All information for users, posts, and comments is stored remotely using SQL/Sequelize.
 
-- Coming Soon: The user will be able to edit their posts/comments
+- Work in progress: The user will be able to edit their comments.
 
 The blog can be found at: https://thawing-tor-30912.herokuapp.com/
 
